@@ -1,0 +1,7 @@
+# Maven target directory
+target/
+
+# Eclipse settings and other stuff
+.settings/
+.classpath
+.project
