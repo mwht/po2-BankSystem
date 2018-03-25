@@ -63,7 +63,6 @@ public class ClientStorageEngine {
 							break;
 						}
 					}
-					System.out.println("column #"+i+" = " + unescape(currentToken));
 					column[i] = currentToken;
 					cur_delim = next_delim+1;
 				}
