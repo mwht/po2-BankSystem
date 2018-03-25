@@ -1,6 +1,12 @@
 package po2.BankSystem;
 
 public class RootMenu extends Menu {
+	private ClientStorageEngine cse;
+	
+	public RootMenu() {
+		cse = new ClientStorageEngine("clients.csv");
+	}
+	
 	@Override
 	public String getMenuTitle() {
 		return "Bank System - main menu";

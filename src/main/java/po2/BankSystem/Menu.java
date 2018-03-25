@@ -1,5 +1,7 @@
 package po2.BankSystem;
 
+import java.util.Scanner;
+
 public class Menu {
 	
 	public static String prettyHeader(String str) {
@@ -20,12 +22,29 @@ public class Menu {
 	}
 	
 	public void display() {
-		System.out.println(prettyHeader(getMenuTitle()));
-		for(int i=0;i<getOptionsCount();i++) {
-			System.out.println((i+1)+") "+getOptionString(i+1));
+		boolean optionSelected = false;
+		boolean menuExit = false;
+		int optionID;
+		Scanner in = new Scanner(System.in);
+		while(!menuExit) {
+			System.out.println(prettyHeader(getMenuTitle()));
+			for(int i=0;i<getOptionsCount();i++) {
+				System.out.println((i+1)+") "+getOptionString(i+1));
+			}
+			System.out.println("other key) "+getOptionString(0));
+			System.out.println();
+			while(!optionSelected) {
+				System.out.print("Select an option: ");
+				String temp = in.nextLine();
+				try {
+					optionID = Integer.parseInt(temp);
+					onOption(optionID);
+					optionSelected = true;
+				} catch(NumberFormatException nfe) {
+					System.out.println("NumberFormatException caught (most likely non-number was given as an input): "+nfe.getLocalizedMessage());
+				}
+			}
 		}
-		System.out.println("other key) "+getOptionString(0));
-		System.out.println();
 	}
 	
 	public String getMenuTitle() {
@@ -41,6 +60,6 @@ public class Menu {
 	}
 	
 	public Object onOption(int id) {
-		throw new UnsupportedOperationException("not implemented in menu");
+		throw new UnsupportedOperationException("option not implemented in menu");
 	}
 }
