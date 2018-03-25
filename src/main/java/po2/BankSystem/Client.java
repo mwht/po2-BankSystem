@@ -25,13 +25,13 @@ public class Client {
 		balance = 0;
 	}
 	
-	public Client(int initialId) {
+	public Client(int initialId, String initialName, String initialSurname, long initialPesel, String initialAddress, double initialBalance) {
 		id = initialId;
-		name = "";
-		surname = "";
-		pesel = 0;
-		address = "";
-		balance = 0;
+		name = initialName;
+		surname = initialSurname;
+		pesel = initialPesel;
+		address = initialAddress;
+		balance = initialBalance;
 	}
 	
 	public int getId() {

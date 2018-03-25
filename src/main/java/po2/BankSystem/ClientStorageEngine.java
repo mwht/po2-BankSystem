@@ -48,19 +48,33 @@ public class ClientStorageEngine {
 				double balance;
 				String[] column = new String[6];
 				int cur_delim = 0;
-				int next_delim;
+				int next_delim = 0;
+				int temp_delim = 0;
 				for(int i=0;i<6;i++) {
-					next_delim = line.indexOf(",", cur_delim);
+					if(i != 5) next_delim = line.indexOf(",", cur_delim);
+					else next_delim = line.length();
 					currentToken = line.substring(cur_delim, next_delim);
-					if(currentToken.charAt(currentToken.length()-1) == '\\') {
-						System.out.println("HIT");
-						System.out.println();
+					while(currentToken.charAt(currentToken.length()-1) == '\\') {
+						if(line.charAt(next_delim) == ',') {
+							temp_delim = next_delim+1;
+							next_delim = line.indexOf(",", temp_delim);
+							currentToken = line.substring(cur_delim, next_delim);
+						} else {
+							break;
+						}
 					}
-					System.out.println("column #"+i+" = " + currentToken);
+					System.out.println("column #"+i+" = " + unescape(currentToken));
+					column[i] = currentToken;
 					cur_delim = next_delim+1;
-					wrk = wrk.substring(cur_delim);
 				}
-				
+				id = Integer.parseInt(column[0]);
+				name = column[1];
+				surname = column[2];
+				pesel = Long.parseLong(column[3]);
+				address = column[4];
+				balance = Double.parseDouble(column[5]);
+				c = new Client(id,name,surname,pesel,address,balance);
+				addClient(c);
 			}
 			br.close();
 			return true;
