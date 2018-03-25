@@ -61,12 +61,7 @@ public class RootMenu extends Menu {
 			case 7:
 				break;
 			default:
-				String prompt = "";
-				while(!(prompt.equals("y") || prompt.equals("n"))) {
-					System.out.print("Commit changes? [y/n] ");
-					prompt = in.nextLine();
-					if(prompt.equals("y")) cse.commit();
-				}
+				if(Operation.prompt()) cse.commit();
 				System.exit(0);
 				break;
 		}
