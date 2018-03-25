@@ -26,6 +26,8 @@ public class ClientStorageEngine {
 		return s.replace("\\,", ",");
 	}
 	
+	public int getClientCount() { return clients.size(); } 
+	
 	public Client findClient(Object key, Client.ClientCriteria crit) {
 		for(int i=0;i<clients.size();i++) {
 			Client c = clients.get(i);
