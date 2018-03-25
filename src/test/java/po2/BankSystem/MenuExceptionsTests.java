@@ -3,13 +3,12 @@ package po2.BankSystem;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class MenuExceptionsTests {
 	Menu sut;
-	@BeforeAll
+	@BeforeEach
 	void setUp() {
 		sut = new Menu();
 	}
@@ -36,7 +35,7 @@ public class MenuExceptionsTests {
 	}
 	
 	
-	@AfterAll
+	@AfterEach
 	void tearDown() {
 		sut = null;
 	}
