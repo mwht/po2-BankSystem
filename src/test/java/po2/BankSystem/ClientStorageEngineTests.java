@@ -30,6 +30,15 @@ public class ClientStorageEngineTests {
 		}
 		sut.addClient(c);
 		assertTrue(sut.commit());
+		
+		c = new Client();
+		try {
+			c.setName("a"); c.setSurname("b"); c.setId(1337); c.setPesel(7301023456L); c.setAddress("ul. Szkolna 17\\, Białystok"); c.setBalance(6.66);
+		} catch(Exception e) {
+			fail("setting up test Client failed");
+		}
+		sut.addClient(c);
+		assertTrue(sut.commit());
 	}
 	
 	@AfterEach
