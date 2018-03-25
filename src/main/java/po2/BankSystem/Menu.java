@@ -19,6 +19,15 @@ public class Menu {
 		return buf.toString();
 	}
 	
+	public void display() {
+		System.out.println(prettyHeader(getMenuTitle()));
+		for(int i=0;i<getOptionsCount();i++) {
+			System.out.println((i+1)+") "+getOptionString(i+1));
+		}
+		System.out.println("other key) "+getOptionString(0));
+		System.out.println();
+	}
+	
 	public String getMenuTitle() {
 		throw new UnsupportedOperationException("menu title not set");
 	}
