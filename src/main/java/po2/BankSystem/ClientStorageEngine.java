@@ -3,16 +3,16 @@ package po2.BankSystem;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClientStorageEngine {
-	private List<Object> objs;
+	private List<Client> clients;
 	private String path;
 	
 	public ClientStorageEngine(String initialPath) {
-		objs = new ArrayList<Object>();
+		clients = new ArrayList<Client>();
 		path = initialPath;
 	}
 	
@@ -34,15 +34,9 @@ public class ClientStorageEngine {
 	public boolean commit() {
 		try {
 			FileOutputStream fos = new FileOutputStream(path);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			
-			for(int i=0;i<objs.size();i++) {
-				oos.writeObject(objs.get(i));
-			}
-			
-			oos.flush();
-			oos.close();
-			fos.close();
+			PrintStream out = new PrintStream(fos);
+			out.println(clients.size());
+			out.close();
 			return true;
 		} catch(Exception e) {
 			e.printStackTrace();
