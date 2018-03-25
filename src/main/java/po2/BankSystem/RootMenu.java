@@ -7,7 +7,7 @@ public class RootMenu extends Menu {
 	private Scanner in;
 	
 	public RootMenu() {
-		cse = new ClientStorageEngine("clients.csv");
+		cse = ClientStorageEngine.getInstance();
 		in = new Scanner(System.in);
 	}
 	
