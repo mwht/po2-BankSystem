@@ -11,17 +11,11 @@ public class ClientStorageEngine {
 	private List<Client> clients;
 	private String path;
 	private final String DELIMITER = ",";
-	private static ClientStorageEngine instance;
 	
 	public ClientStorageEngine(String initialPath) {
 		clients = new ArrayList<Client>();
 		path = initialPath;
 		load();
-	}
-	
-	public static ClientStorageEngine getInstance() {
-		if(instance == null) instance = new ClientStorageEngine("clients.csv");
-		return instance;
 	}
 	
 	private String escape(String s) {
