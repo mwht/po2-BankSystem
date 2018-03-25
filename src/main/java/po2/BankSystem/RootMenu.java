@@ -1,10 +1,14 @@
 package po2.BankSystem;
 
+import java.util.Scanner;
+
 public class RootMenu extends Menu {
 	private ClientStorageEngine cse;
+	private Scanner in;
 	
 	public RootMenu() {
 		cse = new ClientStorageEngine("clients.csv");
+		in = new Scanner(System.in);
 	}
 	
 	@Override
@@ -30,12 +34,26 @@ public class RootMenu extends Menu {
 			case 7:
 				return "Find client...";
 			default:
-				return "Cancel";
+				return "Exit";
 		}
 	}
 	
 	@Override
 	public int getOptionsCount() {
 		return 7;
+	}
+	
+	@Override
+	public Object onOption(int id) {
+		if(id < 1 || id > 7) {
+			String prompt = "";
+			while(!(prompt.equals("y") || prompt.equals("n"))) {
+				System.out.print("Commit changes? [y/n] ");
+				prompt = in.nextLine();
+				if(prompt.equals("y")) cse.commit();
+				System.exit(0);
+			}
+		}
+		return null;
 	}
 }

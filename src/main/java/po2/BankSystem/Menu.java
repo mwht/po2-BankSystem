@@ -22,24 +22,27 @@ public class Menu {
 	}
 	
 	public void display() {
-		boolean optionSelected = false;
+		boolean optionSelected;
 		boolean menuExit = false;
 		int optionID;
 		Scanner in = new Scanner(System.in);
 		while(!menuExit) {
+			optionSelected = false;
 			System.out.println(prettyHeader(getMenuTitle()));
 			for(int i=0;i<getOptionsCount();i++) {
 				System.out.println((i+1)+") "+getOptionString(i+1));
 			}
-			System.out.println("other key) "+getOptionString(0));
+			System.out.println("other number) "+getOptionString(0));
 			System.out.println();
 			while(!optionSelected) {
 				System.out.print("Select an option: ");
 				String temp = in.nextLine();
 				try {
 					optionID = Integer.parseInt(temp);
-					onOption(optionID);
-					optionSelected = true;
+					if(optionID >= 0) {
+						onOption(optionID);
+						optionSelected = true;
+					}
 				} catch(NumberFormatException nfe) {
 					System.out.println("NumberFormatException caught (most likely non-number was given as an input): "+nfe.getLocalizedMessage());
 				}
