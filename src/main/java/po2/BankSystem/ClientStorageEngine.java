@@ -31,11 +31,18 @@ public class ClientStorageEngine {
 		
 	}
 	
+	public void addClient(Client c) {
+		clients.add(c);
+	}
+	
 	public boolean commit() {
 		try {
 			FileOutputStream fos = new FileOutputStream(path);
 			PrintStream out = new PrintStream(fos);
 			out.println(clients.size());
+			for(int i=0;i<clients.size();i++) {
+				
+			}
 			out.close();
 			return true;
 		} catch(Exception e) {

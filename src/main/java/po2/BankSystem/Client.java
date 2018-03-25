@@ -7,6 +7,14 @@ public class Client {
 	private long pesel;
 	private String address;
 	private double balance;
+	public enum ClientCriteria {
+		ID,
+		NAME,
+		SURNAME,
+		PESEL,
+		ADDRESS,
+		BALANCE
+	};
 	
 	public Client() {
 		id = 0;
@@ -46,31 +54,51 @@ public class Client {
 		return surname;
 	}
 	 
-	public void setId(int newId) {
-		id = newId;
+	public void setSurname(String newSurname) {
+		surname = newSurname;
 	}
 	
-	public int getId() {
-		return id;
+	public long getPesel() {
+		return pesel;
 	}
 	 
-	public void setId(int newId) {
-		id = newId;
+	public void setPesel(long newPesel) {
+		pesel = newPesel;
 	}
 	
-	public int getId() {
-		return id;
+	public String getAddress() {
+		return address;
 	}
 	 
-	public void setId(int newId) {
-		id = newId;
+	public void setAddress(String newAddress) {
+		address = newAddress;
 	}
 	
-	public int getId() {
-		return id;
+	public double getBalance() {
+		return balance;
 	}
 	 
-	public void setId(int newId) {
-		id = newId;
+	public void setBalance(double newBalance) throws InvalidBalanceException {
+		if (newBalance < 0.0) {
+			throw new InvalidBalanceException("Negative balance given.");
+		}
+		balance = newBalance;
+	}
+	
+	public void addBalance(double bal) throws InvalidBalanceException {
+		if (bal <= 0.0) {
+			throw new InvalidBalanceException("Negative or zero balance given.");
+		}
+		balance += bal;
+	}
+	
+	public void subBalance(double bal) throws InvalidBalanceException {
+		if(bal <= 0.0) {
+			throw new InvalidBalanceException("Negative or zero balance given.");
+		}
+		if(balance-bal < 0.0) {
+			throw new InvalidBalanceException("Can't set balance less than 0.");
+		}
+		balance -= bal;
 	}
 }
