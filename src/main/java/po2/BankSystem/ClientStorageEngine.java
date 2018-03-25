@@ -1,10 +1,8 @@
 package po2.BankSystem;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.ObjectInputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +26,33 @@ public class ClientStorageEngine {
 		return s.replace("\\,", ",");
 	}
 	
+	public Client findClient(Object key, Client.ClientCriteria crit) {
+		for(int i=0;i<clients.size();i++) {
+			Client c = clients.get(i);
+			switch(crit) {
+				case ADDRESS:
+					if(c.getAddress().equals(key)) return c;
+					break;
+				case BALANCE:
+					if(c.getBalance() == (double) key) return c;
+					break;
+				case ID:
+					if(c.getId() == (int) key) return c;
+					break;
+				case NAME:
+					if(c.getName().equals(key)) return c;
+					break;
+				case PESEL:
+					if(c.getPesel() == (long) key) return c;
+					break;
+				case SURNAME:
+					if(c.getSurname().equals(key)) return c;
+					break;
+			}
+		}
+		return null;
+	}
+	
 	public void addClient(Client c) {
 		clients.add(c);
 	}
@@ -39,7 +64,6 @@ public class ClientStorageEngine {
 			String line;
 			Client c;
 			while((line = br.readLine()) != null) {
-				String wrk = line;
 				String currentToken;
 				
 				int id;
