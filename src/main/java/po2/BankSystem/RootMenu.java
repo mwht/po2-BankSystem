@@ -47,6 +47,7 @@ public class RootMenu extends Menu {
 	public Object onOption(int id) {
 		switch(id) {
 			case 1:
+				new NewClientOperation().run();
 				break;
 			case 2:
 				break;
