@@ -51,8 +51,8 @@ public class RootMenu extends Menu {
 				System.out.print("Commit changes? [y/n] ");
 				prompt = in.nextLine();
 				if(prompt.equals("y")) cse.commit();
-				System.exit(0);
 			}
+			System.exit(0);
 		}
 		return null;
 	}
