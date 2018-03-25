@@ -37,13 +37,30 @@ public class ClientStorageEngine {
 			FileReader fr = new FileReader(path);
 			BufferedReader br = new BufferedReader(fr);
 			String line;
+			Client c;
 			while((line = br.readLine()) != null) {
 				String wrk = line;
-				// extract ID
-				int cur_delim = wrk.indexOf(",");
-				System.out.println("!!! LINE = " + line);
-				System.out.println("cur_delim = " + cur_delim);
-				System.out.println("substr() = " + line.substring(cur_delim+1));
+				String currentToken;
+				
+				int id;
+				String name,surname,address;
+				long pesel;
+				double balance;
+				String[] column = new String[6];
+				int cur_delim = 0;
+				int next_delim;
+				for(int i=0;i<6;i++) {
+					next_delim = line.indexOf(",", cur_delim);
+					currentToken = line.substring(cur_delim, next_delim);
+					if(currentToken.charAt(currentToken.length()-1) == '\\') {
+						System.out.println("HIT");
+						System.out.println();
+					}
+					System.out.println("column #"+i+" = " + currentToken);
+					cur_delim = next_delim+1;
+					wrk = wrk.substring(cur_delim);
+				}
+				
 			}
 			br.close();
 			return true;
@@ -58,7 +75,6 @@ public class ClientStorageEngine {
 		try {
 			FileOutputStream fos = new FileOutputStream(path);
 			PrintStream out = new PrintStream(fos);
-			//out.println(clients.size());
 			for(int i=0;i<clients.size();i++) {
 				Client c = clients.get(i);
 				out.println(c.getId()+DELIMITER+escape(c.getName())+DELIMITER+escape(c.getSurname())+DELIMITER+c.getPesel()+DELIMITER+escape(c.getAddress())+DELIMITER+c.getBalance());
