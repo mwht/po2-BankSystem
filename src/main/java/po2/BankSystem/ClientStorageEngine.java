@@ -68,10 +68,10 @@ public class ClientStorageEngine {
 					cur_delim = next_delim+1;
 				}
 				id = Integer.parseInt(column[0]);
-				name = column[1];
-				surname = column[2];
+				name = unescape(column[1]);
+				surname = unescape(column[2]);
 				pesel = Long.parseLong(column[3]);
-				address = column[4];
+				address = unescape(column[4]);
 				balance = Double.parseDouble(column[5]);
 				c = new Client(id,name,surname,pesel,address,balance);
 				addClient(c);

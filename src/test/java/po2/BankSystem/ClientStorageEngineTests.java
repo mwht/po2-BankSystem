@@ -22,23 +22,17 @@ public class ClientStorageEngineTests {
 	
 	@Test
 	void addClientTest() {
-		Client c = new Client();
-		try {
-			c.setName("a"); c.setSurname("b"); c.setId(1337); c.setPesel(7301023456L); c.setAddress("ul. Szkolna 17, Białystok"); c.setBalance(6.66);
-		} catch(Exception e) {
-			fail("setting up test Client failed");
-		}
-		sut.addClient(c);
+		sut.addClient(new Client(1337,"Jan","Kowalski",73010234567L,"ul. Szkolna 17, Białystok",6.66));
+		sut.addClient(new Client(1338,"Piotr","Jaworski",73010234567L,"ul. Młynarska 14/18 m. 16, 91-050 Łódź",6.66));
+		sut.addClient(new Client(1339,"Tomasz","Duch",73010234567L,"ul. Szkolna 17, Białystok",6.66));
+		sut.addClient(new Client(1340,"gagad,gapdgk","fasfasf",73010234567L,"ul. Szkolna 17, Białystok",6.66));
+		sut.addClient(new Client(1341,"gadgdag","gadgki409i4903509w43tiopiopste[,yts0irjijrt0wopjntpoeropr",73010234567L,"ul. Szkolna 17, Białystok",6.66));
 		assertTrue(sut.commit());
+	}
+	
+	@Test
+	void findClientTest() {
 		
-		c = new Client();
-		try {
-			c.setName("a"); c.setSurname("b"); c.setId(1337); c.setPesel(7301023456L); c.setAddress("ul. Szkolna 17\\, Białystok"); c.setBalance(6.66);
-		} catch(Exception e) {
-			fail("setting up test Client failed");
-		}
-		sut.addClient(c);
-		assertTrue(sut.commit());
 	}
 	
 	@AfterEach
