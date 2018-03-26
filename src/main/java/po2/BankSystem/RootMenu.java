@@ -45,14 +45,27 @@ public class RootMenu extends Menu {
 	
 	@Override
 	public Object onOption(int id) {
-		if(id < 1 || id > 7) {
-			String prompt = "";
-			while(!(prompt.equals("y") || prompt.equals("n"))) {
-				System.out.print("Commit changes? [y/n] ");
-				prompt = in.nextLine();
-				if(prompt.equals("y")) cse.commit();
+		switch(id) {
+			case 1:
+				new NewClientOperation().run();
+				break;
+			case 2:
+				// TODO: write deleteClient method in ClientStorageEngine
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			case 7:
+				break;
+			default:
+				if(Operation.prompt()) cse.commit();
 				System.exit(0);
-			}
+				break;
 		}
 		return null;
 	}
