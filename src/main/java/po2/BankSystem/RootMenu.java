@@ -62,6 +62,7 @@ public class RootMenu extends Menu {
 				new WireTransferOperation().run();
 				break;
 			case 6:
+				new PrintAllClientsOperation().run();
 				break;
 			case 7:
 				new PrintClientInfoOperation().run();
