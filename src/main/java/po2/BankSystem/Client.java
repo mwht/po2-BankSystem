@@ -203,6 +203,10 @@ public class Client {
 		balance -= bal;
 	}
 	
+	public String getTabulatedInfo() {
+		return getId() + "\t|\t" + getName() + "\t|\t" + getSurname() + "\t|\t" + getPesel() + "\t|\t" + getAddress() + "\t|\t" + getBalance();
+	}
+	
 	public String toString() {
 		String temp = "";
 		temp += "Client info:\n";

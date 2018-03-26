@@ -20,9 +20,12 @@ public class PrintClientInfoOperation extends Operation {
 
 	@Override
 	public void perform() {
+		String[] prompts = {"ID: ","Name: ","Surname: ","PESEL: ","Address: ","Balance: "};
 		ClientCriteriaMenu ccm = new ClientCriteriaMenu();
 		ccm.display();
-		System.out.println(Client.ClientCriteria.values()[ccm.getSelectedCriteria()]);
+		Client.ClientCriteria crit = Client.ClientCriteria.values()[ccm.getSelectedCriteria()];
+		System.out.println("ID	|	Name	|	Surname	|	PESEL	|	Address	|	Balance");
+		System.out.println("---------------------------------------------------------------");
 	}
 
 	@Override
