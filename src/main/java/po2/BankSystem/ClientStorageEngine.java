@@ -1,6 +1,7 @@
 package po2.BankSystem;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.PrintStream;
@@ -109,8 +110,11 @@ public class ClientStorageEngine {
 			}
 			br.close();
 			return true;
+		} catch(FileNotFoundException fnf) {
+			System.out.println("File \""+path+"\" not found - will be created at runtime");
+			return false;			
 		} catch(Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getClass().getName() + " caught: " + e.getLocalizedMessage());
 			return false;
 		}
 		
