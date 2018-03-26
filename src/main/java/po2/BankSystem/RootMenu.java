@@ -61,6 +61,7 @@ public class RootMenu extends Menu {
 			case 6:
 				break;
 			case 7:
+				new PrintClientInfoOperation().run();
 				break;
 			default:
 				if(Operation.prompt("Commit changes? [y/n] ")) cse.commit();

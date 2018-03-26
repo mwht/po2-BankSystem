@@ -1,29 +1,40 @@
 package po2.BankSystem;
 
 public class ClientCriteriaMenu extends Menu {
+	
+	private String[] criteriaStrings = {"ID","Name","Surname","PESEL","Address","Balance"};
+	private int selectedCriteriaID;
 
 	@Override
 	public String getMenuTitle() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Client Criteria";
 	}
 
 	@Override
 	public int getOptionsCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 6;
 	}
 
 	@Override
 	public String getOptionString(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return criteriaStrings[id-1];
+		} catch(ArrayIndexOutOfBoundsException e) {
+			return "-";
+		}
 	}
 
 	@Override
 	public Object onOption(int id) {
-		// TODO Auto-generated method stub
+		if(id > 0 && id <= getOptionsCount()) {
+			selectedCriteriaID = id-1;
+			exit();
+		}
 		return null;
+	}
+	
+	public int getSelectedCriteria() {
+		return selectedCriteriaID;
 	}
 	
 }

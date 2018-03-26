@@ -20,7 +20,9 @@ public class PrintClientInfoOperation extends Operation {
 
 	@Override
 	public void perform() {
-		
+		ClientCriteriaMenu ccm = new ClientCriteriaMenu();
+		ccm.display();
+		System.out.println(Client.ClientCriteria.values()[ccm.getSelectedCriteria()]);
 	}
 
 	@Override
