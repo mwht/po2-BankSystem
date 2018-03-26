@@ -56,6 +56,7 @@ public class RootMenu extends Menu {
 				new TransferMoneyOperation().run();
 				break;
 			case 4:
+				new CashoutOperation().run();
 				break;
 			case 5:
 				break;
