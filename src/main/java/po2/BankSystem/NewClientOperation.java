@@ -36,9 +36,13 @@ public class NewClientOperation extends Operation {
 		int id = 0;
 		long pesel = 0L;
 		id = getIntFromInput("ID: ");
-		while(cse.findClient(id, Client.ClientCriteria.ID) != null) {
-			System.out.println("Client with specified ID already exists in database. Please pick another ID.");
-			id = getIntFromInput("ID: ");
+		try {
+			while(cse.findClient(id, Client.ClientCriteria.ID) != null) {
+				System.out.println("Client with specified ID already exists in database. Please pick another ID.");
+				id = getIntFromInput("ID: ");
+			}
+		} catch (ClientNotFoundException e) {
+			// we expect client not to exist at this point
 		}
 		name = getStringFromInput("Name: ");
 		surname = getStringFromInput("Surname: ");

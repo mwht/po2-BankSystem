@@ -35,7 +35,7 @@ public class ClientStorageEngine {
 	
 	public int getClientCount() { return clients.size(); } 
 	
-	public Client findClient(Object key, Client.ClientCriteria crit) {
+	public Client findClient(Object key, Client.ClientCriteria crit) throws ClientNotFoundException {
 		for(int i=0;i<clients.size();i++) {
 			Client c = clients.get(i);
 			switch(crit) {
@@ -59,11 +59,21 @@ public class ClientStorageEngine {
 					break;
 			}
 		}
-		return null;
+		throw new ClientNotFoundException("client not found by "+crit.toString()+" ("+key.toString()+")");
 	}
 	
 	public void addClient(Client c) {
 		clients.add(c);
+	}
+	
+	public boolean deleteClient(Client c) {
+		for(int i=0;i<clients.size();i++) {
+			if(clients.get(i) == c) {
+				clients.remove(i);
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public boolean load() {
