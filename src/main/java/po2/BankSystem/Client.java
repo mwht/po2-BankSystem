@@ -21,27 +21,27 @@ public class Client {
 	 */
 	public enum ClientCriteria {
 		/**
-		 * Client ID
+		 * Client is searched by ID
 		 */
 		ID,
 		/**
-		 * Client name
+		 * Client is searched by name
 		 */
 		NAME,
 		/**
-		 * Client surname
+		 * Client is searched by surname
 		 */
 		SURNAME,
 		/**
-		 * Client PESEL
+		 * Client is searched by PESEL
 		 */
 		PESEL,
 		/**
-		 * Client address
+		 * Client is searched by address
 		 */
 		ADDRESS,
 		/**
-		 * Client balance
+		 * Client is searched by balance
 		 */
 		BALANCE
 	};
@@ -106,7 +106,10 @@ public class Client {
 		name = newName;
 	}
 	
-	
+	/**
+	 * Get client's surname.
+	 * @return client's surname
+	 */
 	public String getSurname() {
 		return surname;
 	}
@@ -118,7 +121,11 @@ public class Client {
 	public void setSurname(String newSurname) {
 		surname = newSurname;
 	}
-	
+
+	/**
+	 * Get client's PESEL.
+	 * @return client's PESEL
+	 */
 	public long getPesel() {
 		return pesel;
 	}
@@ -131,6 +138,10 @@ public class Client {
 		pesel = newPesel;
 	}
 	
+	/**
+	 * Get client's address.
+	 * @return client's address
+	 */
 	public String getAddress() {
 		return address;
 	}
@@ -143,6 +154,10 @@ public class Client {
 		address = newAddress;
 	}
 	
+	/**
+	 * Get client's balance.
+	 * @return client's balance
+	 */
 	public double getBalance() {
 		return balance;
 	}
@@ -150,6 +165,7 @@ public class Client {
 	/**
 	 * Set new client's balance.
 	 * @param newBalance new client's balance
+	 * @throws InvalidBalanceException if negative balance is set
 	 */
 	public void setBalance(double newBalance) throws InvalidBalanceException {
 		if (newBalance < 0.0) {
@@ -158,6 +174,11 @@ public class Client {
 		balance = newBalance;
 	}
 	
+	/**
+	 * Transfer money to client's account.
+	 * @param bal Money amount to be transferred
+	 * @throws InvalidBalanceException if money amount to be transfered is zero or negative.
+	 */
 	public void addBalance(double bal) throws InvalidBalanceException {
 		if (bal <= 0.0) {
 			throw new InvalidBalanceException("Negative or zero balance given.");
@@ -165,6 +186,13 @@ public class Client {
 		balance += bal;
 	}
 	
+	/**
+	 * Cashout money from client's account.
+	 * 
+	 * If client attempts to cash out more money than he has on the account, a {@link InvalidBalanceException}
+	 * @param bal Money amount to be cashed out
+	 * @throws InvalidBalanceException if money amount to be transfered is zero or negative.
+	 */
 	public void subBalance(double bal) throws InvalidBalanceException {
 		if(bal <= 0.0) {
 			throw new InvalidBalanceException("Negative or zero balance given.");
