@@ -4,28 +4,29 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public abstract class Operation {
+	private static Scanner in;
+	
 	public abstract boolean commit();
 	public abstract boolean rollback();
+	
+	public Operation() {
+		if(in == null) in = new Scanner(System.in);
+	}
+	
 	public static boolean prompt() {
-		int temp = 0;
-		while((temp != 'y') || (temp != 'n')) {
-			System.out.print("Commit changes? [y/n] ");
-			try {
-				temp = System.in.read();
-				if(temp == '\n') System.out.println();
-			} catch (IOException e) {
-				e.printStackTrace();
+		String temp = "";
+			while(!(temp.equals("y") || temp.equals("n"))) {
+				temp = getStringFromInput("Commit changes?").toLowerCase();
+				if(temp.equals("y")) return true;
+				else if(temp.equals("n")) return false;
 			}
-			
-			if(temp == 'y') return true;
-			else if(temp == 'n') return false;
-		}
 		return false;
 	}
 	
-	public int getIntFromInput(String prompt) {
+	public static int getIntFromInput(String prompt) {
 		int result;
-		Scanner in = new Scanner(System.in);
+		/* just in case method is called outside the class (i. e. Operation.getIntFromInput()) */
+		if(in == null) in = new Scanner(System.in);
 		while(true) {
 			System.out.print(prompt);
 			String tmp = in.nextLine();
@@ -38,16 +39,17 @@ public abstract class Operation {
 		}
 	}
 	
-	public String getStringFromInput(String prompt) {
-		int result;
-		Scanner in = new Scanner(System.in);
+	public static String getStringFromInput(String prompt) {
+		/* just in case method is called outside the class (i. e. Operation.getIntFromInput()) */
+		if(in == null) in = new Scanner(System.in);
 		System.out.print(prompt);
 		return in.nextLine();
 	}
 	
-	public long getLongFromInput(String prompt) {
+	public static long getLongFromInput(String prompt) {
+		/* just in case method is called outside the class (i. e. Operation.getIntFromInput()) */
+		if(in == null) in = new Scanner(System.in);
 		long result;
-		Scanner in = new Scanner(System.in);
 		while(true) {
 			System.out.print(prompt);
 			String tmp = in.nextLine();
@@ -60,9 +62,10 @@ public abstract class Operation {
 		}
 	}
 	
-	public double getDoubleFromInput(String prompt) {
+	public static double getDoubleFromInput(String prompt) {
+		/* just in case method is called outside the class (i. e. Operation.getIntFromInput()) */
+		if(in == null) in = new Scanner(System.in);
 		double result;
-		Scanner in = new Scanner(System.in);
 		while(true) {
 			System.out.print(prompt);
 			String tmp = in.nextLine();
@@ -81,19 +84,12 @@ public abstract class Operation {
 	
 	public boolean run() {
 		perform();
-		int temp = 0;
+		String temp = "";
 		if(isOperationPrivileged()) {
-			while((temp != 'y') || (temp != 'n')) {
-				System.out.print("Commit changes? [y/n] ");
-				try {
-					temp = System.in.read();
-					if(temp == '\n') System.out.println();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				
-				if(temp == 'y') return commit();
-				else if(temp == 'n') return rollback();
+			while(!(temp.equals("y") || temp.equals("n"))) {
+				temp = getStringFromInput("Commit changes?").toLowerCase();
+				if(temp.equals("y")) return commit();
+				else if(temp.equals("n")) return rollback();
 			}
 		}
 		return false;
