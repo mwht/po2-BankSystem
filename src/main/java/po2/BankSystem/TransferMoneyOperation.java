@@ -16,6 +16,9 @@ public class TransferMoneyOperation extends Operation {
 	public boolean commit() {
 		try {
 			c.addBalance(balance);
+			if(!cse.commit()) {
+				System.out.println("Can't write changes to file!");
+			}
 		} catch(InvalidBalanceException ib) {
 			System.out.println("Error occured during money transfer: " + ib.getMessage());
 			return false;
