@@ -63,7 +63,6 @@ public class RootMenu extends Menu {
 			case 7:
 				break;
 			default:
-				if(Operation.prompt()) cse.commit();
 				System.exit(0);
 				break;
 		}
