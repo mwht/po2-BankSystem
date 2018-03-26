@@ -5,18 +5,20 @@ import java.util.Scanner;
 
 public abstract class Operation {
 	private static Scanner in;
+	private String commitMessage;
 	
 	public abstract boolean commit();
 	public abstract boolean rollback();
 	
 	public Operation() {
 		if(in == null) in = new Scanner(System.in);
+		commitMessage = "";
 	}
 	
-	public static boolean prompt() {
+	public static boolean prompt(String message) {
 		String temp = "";
 			while(!(temp.equals("y") || temp.equals("n"))) {
-				temp = getStringFromInput("Commit changes?").toLowerCase();
+				temp = getStringFromInput(message).toLowerCase();
 				if(temp.equals("y")) return true;
 				else if(temp.equals("n")) return false;
 			}
@@ -82,12 +84,20 @@ public abstract class Operation {
 	
 	public abstract boolean isOperationPrivileged();
 	
+	private String getCommitMessage() {
+		return commitMessage;
+	}
+	
+	private void setCommitMessage(String newCommitMessage) {
+		commitMessage = newCommitMessage;
+	}
+	
 	public boolean run() {
 		perform();
 		String temp = "";
 		if(isOperationPrivileged()) {
 			while(!(temp.equals("y") || temp.equals("n"))) {
-				temp = getStringFromInput("Commit changes?").toLowerCase();
+				temp = getStringFromInput(commitMessage).toLowerCase();
 				if(temp.equals("y")) return commit();
 				else if(temp.equals("n")) return rollback();
 			}

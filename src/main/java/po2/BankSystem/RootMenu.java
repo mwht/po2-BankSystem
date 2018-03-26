@@ -63,7 +63,7 @@ public class RootMenu extends Menu {
 			case 7:
 				break;
 			default:
-				if(Operation.prompt()) cse.commit();
+				if(Operation.prompt("Commit changes? [y/n] ")) cse.commit();
 				System.exit(0);
 				break;
 		}
