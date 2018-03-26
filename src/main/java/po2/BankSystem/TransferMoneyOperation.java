@@ -20,6 +20,7 @@ public class TransferMoneyOperation extends Operation {
 			System.out.println("Error occured during money transfer: " + ib.getMessage());
 			return false;
 		}
+		System.out.println("Money transferred successfully.");
 		return true;
 	}
 
