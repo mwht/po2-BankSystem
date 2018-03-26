@@ -40,6 +40,7 @@ public class DeleteClientOperation extends Operation {
 		int id = getIntFromInput("ID: ");
 		try {
 			target = cse.findClient(id, Client.ClientCriteria.ID);
+			System.out.print(target);
 		} catch(ClientNotFoundException cnf) {
 			System.out.println("Error: " + cnf.getMessage());
 		}
