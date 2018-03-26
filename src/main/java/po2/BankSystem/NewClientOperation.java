@@ -11,6 +11,7 @@ public class NewClientOperation extends Operation {
 		in = new Scanner(System.in);
 		cse = ClientStorageEngine.getInstance();
 		c = null;
+		setCommitMessage("Add client to system? [y/n] ");
 	}
 
 	@Override
