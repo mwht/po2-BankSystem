@@ -11,6 +11,12 @@ import java.util.Scanner;
 public abstract class Operation {
 	private static Scanner in;
 	private String commitMessage;
+	public enum InputType {
+		STRING,
+		INT,
+		LONG,
+		DOUBLE
+	};
 	
 	/**
 	 * Method called when the operation is confirmed.

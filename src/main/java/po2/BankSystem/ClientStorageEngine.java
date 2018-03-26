@@ -90,7 +90,7 @@ public class ClientStorageEngine {
 		}
 		
 		result = new Client[match.size()];
-		for(int i=0;i<clients.size();i++) {
+		for(int i=0;i<match.size();i++) {
 			result[i] = match.get(i);
 		}
 		return result;
