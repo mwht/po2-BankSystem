@@ -31,6 +31,8 @@ public class TransferMoneyOperation extends Operation {
 
 	@Override
 	public void perform() {
+		System.out.println("Money transfer to account:");
+		System.out.println("--------------------------");
 		int id = getIntFromInput("Client ID: ");
 		try {
 			c = cse.findClient(id, Client.ClientCriteria.ID);
