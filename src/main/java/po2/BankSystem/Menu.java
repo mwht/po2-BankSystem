@@ -5,6 +5,7 @@ import java.util.Scanner;
 public abstract class Menu {
 	
 	private boolean menuRunning = true;
+	private Scanner in;
 	
 	public static String prettyHeader(String str) {
 		StringBuffer buf = new StringBuffer();
@@ -30,7 +31,7 @@ public abstract class Menu {
 	public void display() {
 		boolean optionSelected;
 		int optionID;
-		Scanner in = new Scanner(System.in);
+		in = new Scanner(System.in);
 		while(menuRunning) {
 			optionSelected = false;
 			System.out.println(prettyHeader(getMenuTitle()));

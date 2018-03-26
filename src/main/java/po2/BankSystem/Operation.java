@@ -1,6 +1,4 @@
 package po2.BankSystem;
-
-import java.io.IOException;
 import java.util.Scanner;
 
 /**

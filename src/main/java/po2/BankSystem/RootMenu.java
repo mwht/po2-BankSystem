@@ -1,14 +1,10 @@
 package po2.BankSystem;
 
-import java.util.Scanner;
-
 public class RootMenu extends Menu {
 	private ClientStorageEngine cse;
-	private Scanner in;
 	
 	public RootMenu() {
 		cse = ClientStorageEngine.getInstance();
-		in = new Scanner(System.in);
 	}
 	
 	@Override

@@ -1,7 +1,5 @@
 package po2.BankSystem;
 
-import po2.BankSystem.Client.ClientCriteria;
-
 public class PrintClientInfoOperation extends Operation {
 	
 	private ClientStorageEngine cse;

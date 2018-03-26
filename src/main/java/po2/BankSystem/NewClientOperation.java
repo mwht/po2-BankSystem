@@ -1,14 +1,10 @@
 package po2.BankSystem;
 
-import java.util.Scanner;
-
 public class NewClientOperation extends Operation {
-	private Scanner in;
 	private Client c;
 	private ClientStorageEngine cse;
 	
 	public NewClientOperation() {
-		in = new Scanner(System.in);
 		cse = ClientStorageEngine.getInstance();
 		c = null;
 		setCommitMessage("Add client to system? [y/n] ");
