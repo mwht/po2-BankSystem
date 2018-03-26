@@ -53,6 +53,7 @@ public class RootMenu extends Menu {
 				new DeleteClientOperation().run();
 				break;
 			case 3:
+				new TransferMoneyOperation().run();
 				break;
 			case 4:
 				break;
