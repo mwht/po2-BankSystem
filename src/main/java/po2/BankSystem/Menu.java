@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public abstract class Menu {
 	
+	private boolean menuRunning = true;
+	
 	public static String prettyHeader(String str) {
 		StringBuffer buf = new StringBuffer();
 		int length = str.length();
@@ -21,12 +23,15 @@ public abstract class Menu {
 		return buf.toString();
 	}
 	
+	public void exit() {
+		menuRunning = false;
+	}
+	
 	public void display() {
 		boolean optionSelected;
-		boolean menuExit = false;
 		int optionID;
 		Scanner in = new Scanner(System.in);
-		while(!menuExit) {
+		while(menuRunning) {
 			optionSelected = false;
 			System.out.println(prettyHeader(getMenuTitle()));
 			for(int i=0;i<getOptionsCount();i++) {
@@ -34,7 +39,7 @@ public abstract class Menu {
 			}
 			System.out.println("other number) "+getOptionString(0));
 			System.out.println();
-			while(!optionSelected) {
+			while(!optionSelected && menuRunning) {
 				System.out.print("Select an option: ");
 				String temp = in.nextLine();
 				try {
