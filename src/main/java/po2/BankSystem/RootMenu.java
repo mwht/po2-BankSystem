@@ -50,6 +50,7 @@ public class RootMenu extends Menu {
 				new NewClientOperation().run();
 				break;
 			case 2:
+				// TODO: write deleteClient method in ClientStorageEngine
 				break;
 			case 3:
 				break;
