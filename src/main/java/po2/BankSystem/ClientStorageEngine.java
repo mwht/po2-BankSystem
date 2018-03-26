@@ -62,6 +62,40 @@ public class ClientStorageEngine {
 		throw new ClientNotFoundException("client not found by "+crit.toString()+" ("+key.toString()+")");
 	}
 	
+	public Client[] findAllClientsMatchingCriteria(Object key, Client.ClientCriteria crit) {
+		ArrayList<Client> match = new ArrayList<>();
+		Client[] result;
+		for(int i=0;i<clients.size();i++) {
+			Client c = clients.get(i);
+			switch(crit) {
+				case ADDRESS:
+					if(c.getAddress().equals(key)) match.add(c);
+					break;
+				case BALANCE:
+					if(c.getBalance() == (double) key) match.add(c);
+					break;
+				case ID:
+					if(c.getId() == (int) key) match.add(c);
+					break;
+				case NAME:
+					if(c.getName().equals(key)) match.add(c);
+					break;
+				case PESEL:
+					if(c.getPesel() == (long) key) match.add(c);
+					break;
+				case SURNAME:
+					if(c.getSurname().equals(key)) match.add(c);
+					break;
+			}
+		}
+		
+		result = new Client[match.size()];
+		for(int i=0;i<clients.size();i++) {
+			result[i] = match.get(i);
+		}
+		return result;
+	}
+	
 	public void addClient(Client c) {
 		clients.add(c);
 	}
