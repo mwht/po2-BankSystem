@@ -84,11 +84,11 @@ public abstract class Operation {
 	
 	public abstract boolean isOperationPrivileged();
 	
-	private String getCommitMessage() {
+	protected String getCommitMessage() {
 		return commitMessage;
 	}
 	
-	private void setCommitMessage(String newCommitMessage) {
+	protected void setCommitMessage(String newCommitMessage) {
 		commitMessage = newCommitMessage;
 	}
 	
