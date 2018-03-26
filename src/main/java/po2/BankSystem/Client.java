@@ -202,4 +202,18 @@ public class Client {
 		}
 		balance -= bal;
 	}
+	
+	public String toString() {
+		String temp = "";
+		temp += "Client info:\n";
+		temp += "------------\n";
+		temp += "ID: " + getId() + "\n"; 
+		temp += "Name: " + getName() + "\n"; 
+		temp += "Surname: " + getSurname() + "\n"; 
+		temp += "PESEL: " + getPesel() + "\n"; 
+		temp += "Address: " + getAddress() + "\n"; 
+		temp += "Balance: " + getBalance() + "\n"; 
+		temp += "------------\n\n";
+		return temp;
+	}
 }
