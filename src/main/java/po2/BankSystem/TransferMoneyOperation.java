@@ -29,6 +29,7 @@ public class TransferMoneyOperation extends Operation {
 
 	@Override
 	public boolean rollback() {
+		System.out.println("Money transfer cancelled.");
 		return true;
 	}
 

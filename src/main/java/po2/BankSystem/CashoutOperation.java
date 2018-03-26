@@ -29,6 +29,7 @@ public class CashoutOperation extends Operation {
 
 	@Override
 	public boolean rollback() {
+		System.out.println("Cashout cancelled.");
 		return true;
 	}
 
