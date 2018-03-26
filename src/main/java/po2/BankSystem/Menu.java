@@ -2,7 +2,7 @@ package po2.BankSystem;
 
 import java.util.Scanner;
 
-public class Menu {
+public abstract class Menu {
 	
 	public static String prettyHeader(String str) {
 		StringBuffer buf = new StringBuffer();
@@ -50,19 +50,10 @@ public class Menu {
 		}
 	}
 	
-	public String getMenuTitle() {
-		throw new UnsupportedOperationException("menu title not set");
-	}
+	public abstract String getMenuTitle();
 	
-	public int getOptionsCount() {
-		throw new UnsupportedOperationException("unknown number of options");
-	}
+	public abstract int getOptionsCount();
 	
-	public String getOptionString(int id) {
-		throw new UnsupportedOperationException("unknown strings");
-	}
-	
-	public Object onOption(int id) {
-		throw new UnsupportedOperationException("option not implemented in menu");
-	}
+	public abstract String getOptionString(int id);
+	public abstract Object onOption(int id);
 }
