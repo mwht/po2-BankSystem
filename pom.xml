@@ -76,6 +76,7 @@
 			        <generateGitPropertiesFile>false</generateGitPropertiesFile><!-- somehow necessary. otherwise the variables are not available in the pom -->
 			    </configuration>
 			</plugin>
+			<plugin>
         		<groupId>org.apache.maven.plugins</groupId>
         		<artifactId>maven-javadoc-plugin</artifactId>
         		<version>3.0.0</version>
