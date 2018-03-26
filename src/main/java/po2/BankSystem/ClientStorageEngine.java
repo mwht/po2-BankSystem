@@ -96,6 +96,14 @@ public class ClientStorageEngine {
 		return result;
 	}
 	
+	public Client[] getAllClients() {
+		Client[] result = new Client[clients.size()];
+		for(int i=0;i<clients.size();i++) {
+			result[i] = clients.get(i);
+		}
+		return result;
+	}
+	
 	public void addClient(Client c) {
 		clients.add(c);
 	}
