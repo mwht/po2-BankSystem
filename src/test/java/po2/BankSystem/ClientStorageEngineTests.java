@@ -1,9 +1,9 @@
 package po2.BankSystem;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,9 +34,13 @@ public class ClientStorageEngineTests {
 	
 	@Test
 	void findClientTest() {
-		assertNull(sut.findClient("invalid", Client.ClientCriteria.ADDRESS));
+		assertThrows(ClientNotFoundException.class, () -> sut.findClient("invalid", Client.ClientCriteria.ADDRESS));
 		assertThrows(ClassCastException.class, () -> sut.findClient("invalid", Client.ClientCriteria.ID));
-		assertEquals(1339, sut.findClient("Lesiak", Client.ClientCriteria.SURNAME).getId());
+		try {
+			assertEquals(1339, sut.findClient("Lesiak", Client.ClientCriteria.SURNAME).getId());
+		} catch (ClientNotFoundException e) {
+			fail("client not found");
+		}
 	}
 	
 	@AfterEach

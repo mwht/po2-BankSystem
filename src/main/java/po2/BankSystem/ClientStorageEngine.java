@@ -1,6 +1,7 @@
 package po2.BankSystem;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.PrintStream;
@@ -34,7 +35,7 @@ public class ClientStorageEngine {
 	
 	public int getClientCount() { return clients.size(); } 
 	
-	public Client findClient(Object key, Client.ClientCriteria crit) {
+	public Client findClient(Object key, Client.ClientCriteria crit) throws ClientNotFoundException {
 		for(int i=0;i<clients.size();i++) {
 			Client c = clients.get(i);
 			switch(crit) {
@@ -58,7 +59,7 @@ public class ClientStorageEngine {
 					break;
 			}
 		}
-		return null;
+		throw new ClientNotFoundException("client not found by "+crit.toString()+" ("+key.toString()+")");
 	}
 	
 	public Client[] findAllClientsMatchingCriteria(Object key, Client.ClientCriteria crit) {
@@ -89,7 +90,7 @@ public class ClientStorageEngine {
 		}
 		
 		result = new Client[match.size()];
-		for(int i=0;i<clients.size();i++) {
+		for(int i=0;i<match.size();i++) {
 			result[i] = match.get(i);
 		}
 		return result;
@@ -105,6 +106,16 @@ public class ClientStorageEngine {
 	
 	public void addClient(Client c) {
 		clients.add(c);
+	}
+	
+	public boolean deleteClient(Client c) {
+		for(int i=0;i<clients.size();i++) {
+			if(clients.get(i) == c) {
+				clients.remove(i);
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public boolean load() {
@@ -151,8 +162,11 @@ public class ClientStorageEngine {
 			}
 			br.close();
 			return true;
+		} catch(FileNotFoundException fnf) {
+			System.out.println("File \""+path+"\" not found - will be created at runtime");
+			return false;			
 		} catch(Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getClass().getName() + " caught: " + e.getLocalizedMessage());
 			return false;
 		}
 		

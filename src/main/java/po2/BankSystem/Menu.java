@@ -1,6 +1,11 @@
 package po2.BankSystem;
 
-public class Menu {
+import java.util.Scanner;
+
+public abstract class Menu {
+	
+	private boolean menuRunning = true;
+	private Scanner in;
 	
 	public static String prettyHeader(String str) {
 		StringBuffer buf = new StringBuffer();
@@ -19,19 +24,42 @@ public class Menu {
 		return buf.toString();
 	}
 	
-	public String getMenuTitle() {
-		throw new UnsupportedOperationException("menu title not set");
+	public void exit() {
+		menuRunning = false;
 	}
 	
-	public int getOptionsCount() {
-		throw new UnsupportedOperationException("unknown number of options");
+	public void display() {
+		boolean optionSelected;
+		int optionID;
+		in = new Scanner(System.in);
+		while(menuRunning) {
+			optionSelected = false;
+			System.out.println(prettyHeader(getMenuTitle()));
+			for(int i=0;i<getOptionsCount();i++) {
+				System.out.println((i+1)+") "+getOptionString(i+1));
+			}
+			System.out.println("other number) "+getOptionString(0));
+			System.out.println();
+			while(!optionSelected && menuRunning) {
+				System.out.print("Select an option: ");
+				String temp = in.nextLine();
+				try {
+					optionID = Integer.parseInt(temp);
+					if(optionID >= 0) {
+						onOption(optionID);
+						optionSelected = true;
+					}
+				} catch(NumberFormatException nfe) {
+					System.out.println("NumberFormatException caught (most likely non-number was given as an input): "+nfe.getLocalizedMessage());
+				}
+			}
+		}
 	}
 	
-	public String getOptionString(int id) {
-		throw new UnsupportedOperationException("unknown strings");
-	}
+	public abstract String getMenuTitle();
 	
-	public Object onOption(int id) {
-		throw new UnsupportedOperationException("not implemented in menu");
-	}
+	public abstract int getOptionsCount();
+	
+	public abstract String getOptionString(int id);
+	public abstract Object onOption(int id);
 }
