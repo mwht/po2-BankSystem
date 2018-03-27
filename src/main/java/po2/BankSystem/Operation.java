@@ -156,11 +156,11 @@ public abstract class Operation {
 	public abstract void perform();
 	
 	/**
-	 * Returns true if operation is privileged or not.
+	 * Check whether operation should be privileged.
 	 * 
-	 * Difference between privileged operation and unprivileged operation is that privileged operation asks for confirmation and unprivileged operation
-	 * does not, for instance adding client to database is privileged operation, displaying client information is not privileged operation.
-	 * @return true if operation if privileged, false if operation is unprivileged
+	 * Operation should be considered privileged if user is in database and class can perform operation on client.
+	 * 
+	 * @return current state of current privileges
 	 */
 	public abstract boolean isOperationPrivileged();
 	

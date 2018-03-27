@@ -1,17 +1,33 @@
 package po2.BankSystem;
 
+/**
+ * CashoutOperation is {@link Operation} that cashes out money from {@link Client}'s account.
+ * 
+ * @author Sebastian Madejski
+ *
+ */
 public class CashoutOperation extends Operation {
 	
 	private ClientStorageEngine cse;
 	private Client c;
 	private double balance;
 
+	/**
+	 * Constructor for CashoutOperation.
+	 * 
+	 * Gets instance of {@link ClientStorageEngine} and sets the commit message.
+	 */
 	public CashoutOperation() {
 		cse = ClientStorageEngine.getInstance();
 		c = null;
 		setCommitMessage("Confirm money cashout? [y/n] ");
 	}
 	
+	/**
+	 * Commit changes to database. Print out message in case of error.
+	 * 
+	 * @return State (true/false) wheter operation was successful.
+	 */
 	@Override
 	public boolean commit() {
 		try {
@@ -27,12 +43,20 @@ public class CashoutOperation extends Operation {
 		return true;
 	}
 
+	/**
+	 * Cancel the operation.
+	 * 
+	 * @return Always true.
+	 */
 	@Override
 	public boolean rollback() {
 		System.out.println("Cashout cancelled.");
 		return true;
 	}
 
+	/**
+	 * Get client ID from input and amount of money to be cashed out.
+	 */
 	@Override
 	public void perform() {
 		System.out.println("Cashout from account:");

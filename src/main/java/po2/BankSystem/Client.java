@@ -203,6 +203,11 @@ public class Client {
 		balance -= bal;
 	}
 	
+	/**
+	 * Get the info about the client and return it in table-ready form
+	 * 
+	 * @return tab-formatted client info
+	 */
 	public String getTabulatedInfo() {
 		return getId() + "\t|\t" + getName() + "\t|\t" + getSurname() + "\t|\t" + getPesel() + "\t|\t" + getAddress() + "\t|\t" + getBalance();
 	}

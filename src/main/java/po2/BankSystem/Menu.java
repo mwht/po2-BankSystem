@@ -2,11 +2,25 @@ package po2.BankSystem;
 
 import java.util.Scanner;
 
+/**
+ * Menu is class representing generic menu providing methods for displaying the menu
+ * and handling the option selection.
+ * 
+ * @author Sebastian Madejski
+ *
+ */
 public abstract class Menu {
 	
 	private boolean menuRunning = true;
 	private Scanner in;
 	
+	/**
+	 * Format string into ASCII-art style drawing
+	 * header.
+	 * 
+	 * @param str String to be formatted
+	 * @return Formatted print-ready string
+	 */
 	public static String prettyHeader(String str) {
 		StringBuffer buf = new StringBuffer();
 		int length = str.length();
@@ -24,10 +38,19 @@ public abstract class Menu {
 		return buf.toString();
 	}
 	
+	/**
+	 * Tell the menu to exit when it gets the control back.
+	 */
 	public void exit() {
 		menuRunning = false;
 	}
 	
+	/**
+	 * Display menu and run main loop.
+	 * 
+	 * This method takes away control from program until option is selected
+	 * by user.
+	 */
 	public void display() {
 		boolean optionSelected;
 		int optionID;
@@ -56,10 +79,70 @@ public abstract class Menu {
 		}
 	}
 	
+	/**
+	 * Get the menu title. 
+	 * 
+	 * Needs to be implemented in subclass.
+	 * @return title of current menu
+	 */
 	public abstract String getMenuTitle();
 	
+	/**
+	 * Get the option count for current menu
+	 * 
+	 * Needs to be implemented in subclass.
+	 * @return option count in current menu
+	 */
 	public abstract int getOptionsCount();
 	
+	/**
+	 * Get the option string for queried ID in menu.
+	 * 
+	 * Method has to take "default" option into the account, queried when
+	 * asked for undefined action.
+	 * 
+	 * <pre>
+	 * {@code
+	 * public String getOptionString(int id) {
+	 * 	if(id == 1) {
+	 * 		return "Option 1";
+	 * 	} else if(id == 2) {
+	 * 		return "Option 2";
+	 * 	}
+	 *  [...]
+	 *  } else if(id == 9) {
+	 *  	return "Option 9";
+	 *  } else {
+	 *  	return "Other options"; // this will be displayed when queried for undefined action
+	 *  }
+	 * }
+	 * </pre>
+	 * 
+	 * @param id Identifier of currently queried menu item.
+	 * @return String for currently queried menu item.
+	 */
 	public abstract String getOptionString(int id);
+	
+	/**
+	 * Handles the selection of currently selected menu item.
+	 * 
+	 * Example:
+	 * <pre>
+	 * {@code
+	 * public Object onOption(int id) {
+	 * 	if(id == 1) {
+	 * 		System.println("Option 1 selected.");
+	 * 	} else if(id == 2) {
+	 * 		System.println("Option 2 selected.");
+	 * 	} else {
+	 * 		System.println("Unknown option.");
+	 * 	}
+	 * 	return null;
+	 * }
+	 * }
+	 * </pre>
+	 * @param id Currently selected menu action.
+	 * @return user-defined object
+	 */
 	public abstract Object onOption(int id);
 }
