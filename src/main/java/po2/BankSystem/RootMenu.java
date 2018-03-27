@@ -1,5 +1,11 @@
 package po2.BankSystem;
 
+/**
+ * RootMenu is the main menu of the system. Upon exit, the application ends.
+ * 
+ * @author Sebastian Madejski
+ *
+ */
 public class RootMenu extends Menu {
 	private ClientStorageEngine cse;
 	
