@@ -1,9 +1,19 @@
 package po2.BankSystem;
 
+/**
+ * PrintClientInfoOperation is {@link Operation} that prints info of individual client.
+ * 
+ * @author Sebastian Madejski
+ */
 public class PrintClientInfoOperation extends Operation {
 	
 	private ClientStorageEngine cse;
 	
+	/**
+	 * Constructor for PrintClientInfoOperation.
+	 * 
+	 * Gets instance of {@link ClientStorageEngine}
+	 */
 	public PrintClientInfoOperation() {
 		cse = ClientStorageEngine.getInstance();
 	}
@@ -17,7 +27,10 @@ public class PrintClientInfoOperation extends Operation {
 	public boolean rollback() {
 		return true;
 	}
-
+	
+	/**
+	 * Get criteria type from user by displaying {@link ClientCriteriaMenu} and find a {@link Client}(-s) using key given by user.
+	 */
 	@Override
 	public void perform() {
 		String[] prompts = {"ID: ","Name: ","Surname: ","PESEL: ","Address: ","Balance: "};
