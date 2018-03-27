@@ -1,16 +1,32 @@
 package po2.BankSystem;
 
+/**
+ * DeleteClientOperation is {@link Operation} that removes client from database.
+ * 
+ * @author Sebastian Madejski
+ *
+ */
 public class DeleteClientOperation extends Operation {
 	
 	ClientStorageEngine cse;
 	Client target;
-
+	
+	/**
+	 * Constructor for DeleteClientOperation.
+	 * 
+	 * Gets instance of {@link ClientStorageEngine} and sets the commit message.
+	 */
 	public DeleteClientOperation() {
 		setCommitMessage("Delete client? [y/n] ");
 		cse = ClientStorageEngine.getInstance();
 		target = null;
 	}
 	
+	/**
+	 * Deletes the client and commits changes to database. Prints error message on failure.
+	 * 
+	 * @return state (true/false) whether the operation was successful.
+	 */
 	@Override
 	public boolean commit() {
 		if(cse.deleteClient(target)) {
@@ -26,13 +42,21 @@ public class DeleteClientOperation extends Operation {
 			return false;
 		}
 	}
-
+	
+	/**
+	 * Cancel the operation.
+	 * 
+	 * @return Always true.
+	 */
 	@Override
 	public boolean rollback() {
 		System.out.println("Client deletion cancelled.");
 		return true;
 	}
-
+	
+	/**
+	 * Gets the client ID from user and find the client to delete.
+	 */
 	@Override
 	public void perform() {
 		System.out.println("Delete client from database:");
