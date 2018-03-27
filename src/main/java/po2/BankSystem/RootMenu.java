@@ -9,15 +9,28 @@ package po2.BankSystem;
 public class RootMenu extends Menu {
 	private ClientStorageEngine cse;
 	
+	/**
+	 * Constructor for RootMenu.
+	 * 
+	 * Gets the instance of {@link ClientStorageEngine}.
+	 */
 	public RootMenu() {
 		cse = ClientStorageEngine.getInstance();
 	}
 	
+	/**
+	 * Gets the menu title.
+	 * 
+	 * @return "Bank System - main menu" string.
+	 */
 	@Override
 	public String getMenuTitle() {
 		return "Bank System - main menu";
 	}
 	
+	/**
+	 * Gets the option string for queried ID.
+	 */
 	@Override
 	public String getOptionString(int id) {
 		switch(id) {
@@ -40,11 +53,20 @@ public class RootMenu extends Menu {
 		}
 	}
 	
+	
+	/**
+	 * Get the options count.
+	 */
 	@Override
 	public int getOptionsCount() {
 		return 7;
 	}
 	
+	/**
+	 * Create and run respective {@link Operation}s. If operation does not exist, ask whether to commit changes and exit the menu.
+	 * 
+	 * @return Nothing. (null)
+	 */
 	@Override
 	public Object onOption(int id) {
 		switch(id) {
