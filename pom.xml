@@ -4,6 +4,7 @@
 
   <groupId>po2</groupId>
   <artifactId>BankSystem</artifactId>
+  <version>0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>BankSystem</name>
@@ -17,7 +18,6 @@
 	<junit.jupiter.version>5.1.0</junit.jupiter.version>
 	<junit.vintage.version>5.1.0</junit.vintage.version>
 	<junit.platform.version>1.1.0</junit.platform.version>
-	<version.number>rc1</version.number>
   </properties>
   
 	<build>
@@ -58,33 +58,6 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			<plugin>
-			    <groupId>pl.project13.maven</groupId>
-			    <artifactId>git-commit-id-plugin</artifactId>
-			    <version>2.2.1</version>
-			    <executions>
-			        <execution>
-			            <phase>validate</phase>
-			            <goals>
-			                <goal>revision</goal>
-			            </goals>
-			        </execution>
-			    </executions>
-			    <configuration>
-			        <dateFormat>yyyyMMdd-HHmmss</dateFormat><!--  human-readable part of the version number -->
-			        <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
-			        <generateGitPropertiesFile>false</generateGitPropertiesFile><!-- somehow necessary. otherwise the variables are not available in the pom -->
-			    </configuration>
-			</plugin>
-			<plugin>
-        		<groupId>org.apache.maven.plugins</groupId>
-        		<artifactId>maven-javadoc-plugin</artifactId>
-        		<version>3.0.0</version>
-        		<configuration>
-          			<reportOutputDirectory>${project.reporting.outputDirectory}</reportOutputDirectory>
-          			<destDir>docs</destDir>
-        		</configuration>
-      		</plugin>
 		</plugins>
 	</build>
 	
@@ -121,7 +94,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
-	<version>${version.number}</version>
 
 </project>
