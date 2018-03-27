@@ -2,6 +2,13 @@ package po2.BankSystem;
 
 import java.util.Scanner;
 
+/**
+ * Menu is class representing generic menu providing methods for displaying the menu
+ * and handling the option selection.
+ * 
+ * @author Sebastian Madejski
+ *
+ */
 public abstract class Menu {
 	
 	private boolean menuRunning = true;
