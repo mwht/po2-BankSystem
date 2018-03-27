@@ -17,7 +17,7 @@
 	<junit.jupiter.version>5.1.0</junit.jupiter.version>
 	<junit.vintage.version>5.1.0</junit.vintage.version>
 	<junit.platform.version>1.1.0</junit.platform.version>
-	<version.number>SNAPSHOT</version.number>
+	<version.number>rc1</version.number>
   </properties>
   
 	<build>
