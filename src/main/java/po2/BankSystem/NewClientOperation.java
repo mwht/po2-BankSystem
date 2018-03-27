@@ -1,15 +1,30 @@
 package po2.BankSystem;
 
+/**
+ * NewClientOperation is {@link Operation} that adds new client to database.
+ * 
+ * @author Sebastian Madejski
+ */
 public class NewClientOperation extends Operation {
 	private Client c;
 	private ClientStorageEngine cse;
 	
+	/**
+	 * Constructor for NewClientOperation.
+	 * 
+	 * Gets instance of {@link ClientStorageEngine} and sets commit message.
+	 */
 	public NewClientOperation() {
 		cse = ClientStorageEngine.getInstance();
 		c = null;
 		setCommitMessage("Add client to system? [y/n] ");
 	}
 
+	/**
+	 * Add {@link Client} to database and commit changes.
+	 * 
+	 * @return Status (true/false) whether operation was successful.
+	 */
 	@Override
 	public boolean commit() {
 		cse.addClient(c);
@@ -17,13 +32,21 @@ public class NewClientOperation extends Operation {
 		System.out.println("Client added to database successfully.");
 		return true;
 	}
-
+	
+	/**
+	 * Cancel addition of client.
+	 * 
+	 * @return Always true.
+	 */
 	@Override
 	public boolean rollback() {
 		System.out.println("New client addition cancelled.");
 		return false;
 	}
 
+	/**
+	 * Get data for new client for user and create {@link Client} object using these data.
+	 */
 	@Override
 	public void perform() {
 		System.out.println("Adding new client to system:");
@@ -47,6 +70,11 @@ public class NewClientOperation extends Operation {
 		c = new Client(id,name,surname,pesel,address,0);
 	}
 
+	/**
+	 * Returns always true since this operation is always privileged.
+	 * 
+	 * @return Always true.
+	 */
 	@Override
 	public boolean isOperationPrivileged() {
 		return true;
