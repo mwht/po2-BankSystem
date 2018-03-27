@@ -65,7 +65,7 @@ public class RootMenu extends Menu {
 				break;
 			default:
 				if(Operation.prompt("Commit changes? [y/n] ")) cse.commit();
-				System.exit(0);
+				exit();
 				break;
 		}
 		return null;
