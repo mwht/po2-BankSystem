@@ -10,7 +10,7 @@ public class Client {
 	private int id;
 	private String name;
 	private String surname;
-	private long pesel;
+	private String pesel;
 	private String address;
 	private double balance;
 	/**
@@ -52,7 +52,7 @@ public class Client {
 		id = 0;
 		name = "";
 		surname = "";
-		pesel = 0;
+		pesel = "";
 		address = "";
 		balance = 0;
 	}
@@ -65,7 +65,7 @@ public class Client {
 	 * @param initialAddress client's initial address
 	 * @param initialBalance client's initial balance
 	 */
-	public Client(int initialId, String initialName, String initialSurname, long initialPesel, String initialAddress, double initialBalance) {
+	public Client(int initialId, String initialName, String initialSurname, String initialPesel, String initialAddress, double initialBalance) {
 		id = initialId;
 		name = initialName;
 		surname = initialSurname;
@@ -126,7 +126,7 @@ public class Client {
 	 * Get client's PESEL.
 	 * @return client's PESEL
 	 */
-	public long getPesel() {
+	public String getPesel() {
 		return pesel;
 	}
 	 
@@ -134,7 +134,7 @@ public class Client {
 	 * Set new client's PESEL.
 	 * @param newPesel new client's PESEL
 	 */
-	public void setPesel(long newPesel) {
+	public void setPesel(String newPesel) {
 		pesel = newPesel;
 	}
 	

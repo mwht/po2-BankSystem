@@ -91,7 +91,7 @@ public class ClientStorageEngine {
 					if(c.getName().equals(key)) return c;
 					break;
 				case PESEL:
-					if(c.getPesel() == (long) key) return c;
+					if(c.getPesel().equals(key)) return c;
 					break;
 				case SURNAME:
 					if(c.getSurname().equals(key)) return c;
@@ -127,7 +127,7 @@ public class ClientStorageEngine {
 					if(c.getName().equals(key)) match.add(c);
 					break;
 				case PESEL:
-					if(c.getPesel() == (long) key) match.add(c);
+					if(c.getPesel().equals(key)) match.add(c);
 					break;
 				case SURNAME:
 					if(c.getSurname().equals(key)) match.add(c);
@@ -201,7 +201,7 @@ public class ClientStorageEngine {
 				
 				int id;
 				String name,surname,address;
-				long pesel;
+				String pesel;
 				double balance;
 				String[] column = new String[6];
 				int cur_delim = 0;
@@ -226,7 +226,7 @@ public class ClientStorageEngine {
 				id = Integer.parseInt(column[0]);
 				name = unescape(column[1]);
 				surname = unescape(column[2]);
-				pesel = Long.parseLong(column[3]);
+				pesel = column[3];
 				address = unescape(column[4]);
 				balance = Double.parseDouble(column[5]);
 				c = new Client(id,name,surname,pesel,address,balance);

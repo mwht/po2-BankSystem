@@ -53,7 +53,7 @@ public class NewClientOperation extends Operation {
 		System.out.println("----------------------------");
 		String name,surname,address;
 		int id = 0;
-		long pesel = 0L;
+		String pesel = "";
 		id = getIntFromInput("ID: ");
 		try {
 			while(cse.findClient(id, Client.ClientCriteria.ID) != null) {
@@ -65,7 +65,7 @@ public class NewClientOperation extends Operation {
 		}
 		name = getStringFromInput("Name: ");
 		surname = getStringFromInput("Surname: ");
-		pesel = getLongFromInput("PESEL: ");
+		pesel = getStringFromInput("PESEL: ");
 		address = getStringFromInput("Address: ");
 		c = new Client(id,name,surname,pesel,address,0);
 	}

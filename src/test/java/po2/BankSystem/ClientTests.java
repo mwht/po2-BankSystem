@@ -35,8 +35,8 @@ public class ClientTests {
 	
 	@Test
 	void peselTest() {
-		sut.setPesel(73010431337L);
-		assertEquals(73010431337L, sut.getPesel());
+		sut.setPesel("73010431337");
+		assertEquals("73010431337", sut.getPesel());
 	}
 	
 	@Test
