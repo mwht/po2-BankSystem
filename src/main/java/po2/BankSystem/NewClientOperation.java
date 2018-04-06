@@ -1,5 +1,7 @@
 package po2.BankSystem;
 
+import java.util.regex.Pattern;
+
 /**
  * NewClientOperation is {@link Operation} that adds new client to database.
  * 
@@ -65,7 +67,12 @@ public class NewClientOperation extends Operation {
 		}
 		name = getStringFromInput("Name: ");
 		surname = getStringFromInput("Surname: ");
-		pesel = getStringFromInput("PESEL: ");
+		while(!Pattern.matches("\\d{11}",pesel)) {
+			pesel = getStringFromInput("PESEL: ");
+			if(!Pattern.matches("\\d{11}",pesel)) {
+				System.out.println("Invalid PESEL.");
+			}
+		}
 		address = getStringFromInput("Address: ");
 		c = new Client(id,name,surname,pesel,address,0);
 	}

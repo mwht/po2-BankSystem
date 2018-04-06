@@ -1,5 +1,7 @@
 package po2.BankSystem;
 
+import java.util.regex.Pattern;
+
 /**
  * Client is class which represents a bank client and contains methods
  * for handling bank account balance.
@@ -69,7 +71,7 @@ public class Client {
 		id = initialId;
 		name = initialName;
 		surname = initialSurname;
-		pesel = initialPesel;
+		setPesel(initialPesel);
 		address = initialAddress;
 		balance = initialBalance;
 	}
@@ -135,7 +137,11 @@ public class Client {
 	 * @param newPesel new client's PESEL
 	 */
 	public void setPesel(String newPesel) {
-		pesel = newPesel;
+		if(Pattern.matches("\\d{11}", newPesel)) {
+			pesel = newPesel;
+		} else {
+			throw new IllegalArgumentException("Invalid PESEL.");
+		}
 	}
 	
 	/**
