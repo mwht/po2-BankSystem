@@ -68,12 +68,16 @@ public class Client {
 	 * @param initialBalance client's initial balance
 	 */
 	public Client(int initialId, String initialName, String initialSurname, String initialPesel, String initialAddress, double initialBalance) {
-		id = initialId;
-		name = initialName;
-		surname = initialSurname;
+		setId(initialId);
+		setName(initialName);
+		setSurname(initialSurname);
 		setPesel(initialPesel);
-		address = initialAddress;
-		balance = initialBalance;
+		setAddress(initialAddress);
+		try {
+			setBalance(initialBalance);
+		} catch (InvalidBalanceException e) {
+			balance = 0;
+		}
 	}
 	
 	/**
