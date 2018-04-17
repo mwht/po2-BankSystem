@@ -162,5 +162,8 @@ public abstract class Menu {
 	 */
 	public abstract Object onOption(int id);
 	
+	/**
+	 * Method called upon exiting from menu.
+	 */
 	public abstract void onExit();
 }
