@@ -4,7 +4,7 @@
 
   <groupId>po2</groupId>
   <artifactId>BankSystem</artifactId>
-  <version>rc1</version>
+  <version>1.0</version>
   <packaging>jar</packaging>
 
   <name>BankSystem</name>
