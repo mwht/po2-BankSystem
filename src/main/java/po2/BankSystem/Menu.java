@@ -62,18 +62,34 @@ public abstract class Menu {
 				System.out.println((i+1)+") "+getOptionString(i+1));
 			}
 			System.out.println("other number) "+getOptionString(0));
+			System.out.println("q) exit");
 			System.out.println();
 			while(!optionSelected && menuRunning) {
 				System.out.print("Select an option: ");
 				String temp = in.nextLine();
-				try {
-					optionID = Integer.parseInt(temp);
-					if(optionID >= 0) {
-						onOption(optionID);
-						optionSelected = true;
+				if(temp.length() > 0) {
+					try {
+						if(temp.equals("q")) {
+							onExit();
+							exit();
+							break;
+						}
+						optionID = Integer.parseInt(temp);
+						if(optionID >= 0) {
+							onOption(optionID);
+							optionSelected = true;
+						}
+					} catch(NumberFormatException nfe) {
+						System.out.println("NumberFormatException caught (most likely non-number was given as an input): "+nfe.getLocalizedMessage());
+						System.out.println(prettyHeader(getMenuTitle()));
+						for(int i=0;i<getOptionsCount();i++) {
+							System.out.println((i+1)+") "+getOptionString(i+1));
+						}
+						System.out.println("other number) "+getOptionString(0));
+						
+						System.out.println("q) exit");
+						System.out.println();
 					}
-				} catch(NumberFormatException nfe) {
-					System.out.println("NumberFormatException caught (most likely non-number was given as an input): "+nfe.getLocalizedMessage());
 				}
 			}
 		}
@@ -145,4 +161,6 @@ public abstract class Menu {
 	 * @return user-defined object
 	 */
 	public abstract Object onOption(int id);
+	
+	public abstract void onExit();
 }

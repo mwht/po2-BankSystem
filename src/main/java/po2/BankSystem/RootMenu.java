@@ -49,7 +49,7 @@ public class RootMenu extends Menu {
 			case 7:
 				return "Find client...";
 			default:
-				return "Exit";
+				return "Print menu";
 		}
 	}
 	
@@ -92,10 +92,16 @@ public class RootMenu extends Menu {
 				new PrintClientInfoOperation().run();
 				break;
 			default:
-				if(Operation.prompt("Commit changes? [y/n] ")) cse.commit();
-				exit();
+				/*if(Operation.prompt("Commit changes? [y/n] ")) cse.commit();
+				exit();*/
+				display();
 				break;
 		}
 		return null;
+	}
+	
+	@Override
+	public void onExit() {
+		if(Operation.prompt("Commit changes? [y/n] ")) cse.commit();
 	}
 }

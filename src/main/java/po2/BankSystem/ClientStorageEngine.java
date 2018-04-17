@@ -64,7 +64,14 @@ public class ClientStorageEngine {
 	public int getClientCount() { return clients.size(); } 
 	
 	public int getNextID() {
-		return clients.size()+1;
+		if(clients.size() == 0) return 1;
+		int max = clients.get(0).getId();
+		for(int i=0;i<clients.size();i++) {
+			if(clients.get(i).getId() > max) {
+				max = clients.get(i).getId();
+			}
+		}
+		return max+1;
 	}
 	
 	/**

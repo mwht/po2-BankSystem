@@ -9,6 +9,11 @@ public class ClientCriteriaMenu extends Menu {
 	
 	private String[] criteriaStrings = {"ID","Name","Surname","PESEL","Address","Balance"};
 	private int selectedCriteriaID;
+	
+	public ClientCriteriaMenu() {
+		selectedCriteriaID = -1;
+	}
+	
 	/**
 	 * Get the menu title.
 	 * 
@@ -56,6 +61,8 @@ public class ClientCriteriaMenu extends Menu {
 		}
 		return null;
 	}
+	
+	public void onExit() {}
 	
 	/**
 	 * Gets the selected criteria.

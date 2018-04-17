@@ -38,6 +38,7 @@ public class PrintClientInfoOperation extends Operation {
 		ClientCriteriaMenu ccm = new ClientCriteriaMenu();
 		ccm.display();
 		int selectedCriteria = ccm.getSelectedCriteria();
+		if(selectedCriteria == -1) return;
 		Client[] clients;
 		Object key = null;
 		Client.ClientCriteria crit = Client.ClientCriteria.values()[selectedCriteria];

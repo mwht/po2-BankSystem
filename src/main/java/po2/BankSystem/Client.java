@@ -130,7 +130,7 @@ public class Client {
 	 * @param newSurname new client's surname
 	 */
 	public void setSurname(String newSurname) {
-		if(Pattern.matches("[A-Z][a-z]+", newSurname)) {
+		if(Pattern.matches("^[A-Z][a-z]+-?([A-Z][a-z]+)?$", newSurname)) {
 			surname = newSurname;
 		} else {
 			throw new IllegalArgumentException("Invalid surname.");
