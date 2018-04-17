@@ -110,6 +110,11 @@ public class Client {
 	 */
 	public void setName(String newName) {
 		name = newName;
+		if(Pattern.matches("[A-Z][a-z]+", newName)) {
+			name = newName;
+		} else {
+			throw new IllegalArgumentException("Invalid name.");
+		}
 	}
 	
 	/**
@@ -125,7 +130,11 @@ public class Client {
 	 * @param newSurname new client's surname
 	 */
 	public void setSurname(String newSurname) {
-		surname = newSurname;
+		if(Pattern.matches("[A-Z][a-z]+", newSurname)) {
+			surname = newSurname;
+		} else {
+			throw new IllegalArgumentException("Invalid surname.");
+		}
 	}
 
 	/**

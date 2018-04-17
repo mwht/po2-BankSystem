@@ -63,6 +63,10 @@ public class ClientStorageEngine {
 	 */
 	public int getClientCount() { return clients.size(); } 
 	
+	public int getNextID() {
+		return clients.size()+1;
+	}
+	
 	/**
 	 * Find the client in database by key in criteria given by user.
 	 * 

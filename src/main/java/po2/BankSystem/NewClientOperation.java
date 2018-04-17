@@ -55,7 +55,9 @@ public class NewClientOperation extends Operation {
 		System.out.println("----------------------------");
 		String name,surname,address;
 		int id = 0;
+		boolean good = false;
 		String pesel = "";
+		/*
 		id = getIntFromInput("ID: ");
 		try {
 			while(cse.findClient(id, Client.ClientCriteria.ID) != null) {
@@ -65,16 +67,21 @@ public class NewClientOperation extends Operation {
 		} catch (ClientNotFoundException e) {
 			// we expect client not to exist at this point
 		}
-		name = getStringFromInput("Name: ");
-		surname = getStringFromInput("Surname: ");
-		while(!Pattern.matches("\\d{11}",pesel)) {
-			pesel = getStringFromInput("PESEL: ");
-			if(!Pattern.matches("\\d{11}",pesel)) {
-				System.out.println("Invalid PESEL.");
+		*/
+		id = cse.getNextID();
+		System.out.println("ID: "+id);
+		while(!good) {
+			try {
+				name = getStringFromInput("Name: ");
+				surname = getStringFromInput("Surname: ");
+				pesel = getStringFromInput("PESEL: ");
+				address = getStringFromInput("Address: ");
+				c = new Client(id,name,surname,pesel,address,0);
+				good = true;
+			} catch(Exception e) {
+				System.out.println("Can't create new client: "+e.getMessage());
 			}
 		}
-		address = getStringFromInput("Address: ");
-		c = new Client(id,name,surname,pesel,address,0);
 	}
 
 	/**
