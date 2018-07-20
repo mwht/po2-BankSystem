@@ -27,8 +27,8 @@ public class ClientStorageEngineTests {
 		sut.addClient(new Client(1337,"Jan","Kowalski","73010234567","ul. Szkolna 17, Białystok",6.66));
 		sut.addClient(new Client(1338,"Piotr","Graczyk","73010234567","ul. Młynarska 14/18 m. 16, 91-050 Łódź",6.66));
 		sut.addClient(new Client(1339,"Tomasz","Lesiak","73010234567","ul. Szkolna 17, Białystok",6.66));
-		sut.addClient(new Client(1340,"gagad,gapdgk","fasfasf","73010234567","ul. Szkolna 17, Białystok",6.66));
-		sut.addClient(new Client(1341,"gadgdag","gadgki409i4903509w43tiopiopste[,yts0irjijrt0wopjntpoeropr","73010234567","ul. Szkolna 17, Białystok",6.66));
+		sut.addClient(new Client(1340,"Gagadgapdgk","Fasfasf","73010234567","ul. Szkolna 17, Białystok",6.66));
+		sut.addClient(new Client(1341,"Gadgdag","Gadgki","73010234567","ul. Szkolna 17, Białystok",6.66));
 		assertTrue(sut.commit());
 	}
 	
